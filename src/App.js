@@ -5,15 +5,19 @@ import CartContainer from "./components/CartContainer";
 // items
 import cartItems from "./cart-items";
 // redux stuff
+import { Provider } from 'react-redux'
+import store from './redux/store'
 
 function App() {
   // cart setup
 
   return (
-    <main>
-      <Navbar />
-      <CartContainer cart={cartItems} />
-    </main>
+    <Provider store={store}>
+      <main>
+        <Navbar />
+        <CartContainer />
+      </main>
+    </Provider>
   );
 }
 
