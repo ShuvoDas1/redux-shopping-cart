@@ -1,7 +1,7 @@
 import React from "react";
-import {increment, decrement} from '../redux'
+import {increment, decrement, remove} from '../redux'
 import { connect } from 'react-redux'
-const CartItem = ({ img, title, price, amount, increment, decrement }) => {
+const CartItem = ({ img, title, price, amount, increment, decrement, id, remove }) => {
   return (
     <div className="cart-item">
       <img src={img} alt={title} />
@@ -9,7 +9,7 @@ const CartItem = ({ img, title, price, amount, increment, decrement }) => {
         <h4>{title}</h4>
         <h4 className="item-price">${price}</h4>
         {/* remove button */}
-        <button className="remove-btn">remove</button>
+        <button onClick={()=> remove(id)} className="remove-btn">remove</button>
       </div>
       <div>
         {/* increase amount */}
@@ -31,10 +31,11 @@ const CartItem = ({ img, title, price, amount, increment, decrement }) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) =>{
+const mapDispatchToProps = (dispatch,id) =>{
     return {
       increment : () => dispatch(increment()),
-      decrement: () => dispatch(decrement())
+      decrement: () => dispatch(decrement()),
+      remove: () => dispatch(remove(id))
     }
 }
 

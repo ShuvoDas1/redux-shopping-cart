@@ -1,4 +1,4 @@
-import { INCREMENT, DECREMENT, CLEAR_CART} from './cartTypes'
+import { INCREMENT, DECREMENT, CLEAR_CART, REMOVE} from './cartTypes'
 import cartItems from '../../cart-items'
 const initialCart = {
     cartItems: cartItems,
@@ -14,12 +14,12 @@ const cartReducer = (state = initialCart, action) =>{
                 amount: state.amount + 1
             }
         case DECREMENT:
-            if(state.numOfQty <= 0){
+            if(state.amount <= 0){
                 return {
                     ...state,
-                   amount: state.amount
+                   amount: 0
                 }
-            }
+            } 
             else{
                 return {
                     ...state,
@@ -30,6 +30,13 @@ const cartReducer = (state = initialCart, action) =>{
             return {
                 ...state,
                 cartItems: state.cartItems = [] 
+            }
+        }
+    
+        case REMOVE: {
+            return {
+                ...state,
+                cartItems: state.cartItems.filter(item => item.id !== action.payload.id)
             }
         }
             

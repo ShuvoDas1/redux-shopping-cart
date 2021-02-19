@@ -1,4 +1,4 @@
-import { INCREMENT, DECREMENT, CLEAR_CART} from './cartTypes'
+import { INCREMENT, DECREMENT, CLEAR_CART, REMOVE} from './cartTypes'
 
 export const increment = () =>{
     return {
@@ -15,5 +15,12 @@ export const decrement = () =>{
 export const clearCart = () =>{
     return {
         type: CLEAR_CART
+    }
+}
+
+export const remove = id =>{
+    return {
+        type: REMOVE,
+        payload: id
     }
 }
