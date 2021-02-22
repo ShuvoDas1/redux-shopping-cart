@@ -1,9 +1,13 @@
 import React from "react";
 import CartItem from "./CartItem";
 import { connect } from 'react-redux'
-import {clearCart} from '../redux'
+import {clearCart,getTotals} from '../redux'
+import { useEffect } from "react";
 
-const CartContainer = ({ cartItems = [],total, clearCart }) => {
+const CartContainer = ({ cartItems = [],total, clearCart, getTotals }) => {
+  useEffect(()=>{
+    getTotals();
+  })
   if (cartItems.length === 0) {
     return (
       <section className="cart">
@@ -43,7 +47,6 @@ const CartContainer = ({ cartItems = [],total, clearCart }) => {
 };
 
 const mapStateToProps = state =>{
-  console.log(state)
   return{
     cartItems: state.cart.cartItems,
     total: state.cart.total
@@ -52,7 +55,8 @@ const mapStateToProps = state =>{
 
 const mapDispatchToProps = dispatch =>{
   return {
-    clearCart: () => dispatch(clearCart())
+    clearCart: () => dispatch(clearCart()),
+    getTotals: () => dispatch(getTotals())
   }
 }
 

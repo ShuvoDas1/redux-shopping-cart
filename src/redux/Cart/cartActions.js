@@ -1,14 +1,22 @@
-import { INCREMENT, DECREMENT, CLEAR_CART, REMOVE} from './cartTypes'
+import { INCREMENT, DECREMENT, CLEAR_CART, REMOVE, GET_TOTALS} from './cartTypes'
 
-export const increment = () =>{
+export const increment = (id,amount) =>{
     return {
-        type: INCREMENT
+        type: INCREMENT,
+        payload: {
+            id: id,
+            amount : amount
+        }
     }
 }
 
-export const decrement = () =>{
+export const decrement = (id, amount) =>{
     return {
-        type: DECREMENT
+        type: DECREMENT,
+        payload: {
+            id: id,
+            amount: amount
+        }
     }
 }
 
@@ -21,6 +29,13 @@ export const clearCart = () =>{
 export const remove = id =>{
     return {
         type: REMOVE,
-        payload: id
+        payload: {id}
+    }
+}
+
+export const getTotals = () =>{
+    return {
+        type: GET_TOTALS,
+        
     }
 }
